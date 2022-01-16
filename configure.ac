@@ -588,7 +588,7 @@ AC_SUBST([DOLLAR_SIGN],[$])
 # __tests__
 AC_ARG_ENABLE([tests],
               [AS_HELP_STRING([--enable-tests],
-                              [Enable building the binary testsuite. Requires --enable-static  [default=no]])],
+                              [Enable building the binary testsuite. Requires --enable-static  [default=yes]])],
               [build_tests="$enableval"],
               [build_tests="no"])
 

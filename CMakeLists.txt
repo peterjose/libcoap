@@ -21,7 +21,7 @@ set(COAP_LIBRARY_NAME "coap-${LIBCOAP_API_VERSION}")
 option(
   BUILD_SHARED_LIBS
   "Build shared libs"
-  OFF)
+  ON)
 
 add_library(${COAP_LIBRARY_NAME})
 
@@ -466,6 +466,7 @@ target_sources(
           ${CMAKE_CURRENT_LIST_DIR}/src/str.c
           ${CMAKE_CURRENT_LIST_DIR}/src/subscribe.c
           ${CMAKE_CURRENT_LIST_DIR}/src/uri.c
+          ${CMAKE_CURRENT_LIST_DIR}/src/custom_scanner.c
           # no need to parse those files if we do not need them
           $<$<BOOL:${HAVE_OPENSSL}>:${CMAKE_CURRENT_LIST_DIR}/src/coap_openssl.c>
           $<$<BOOL:${HAVE_LIBTINYDTLS}>:${CMAKE_CURRENT_LIST_DIR}/src/coap_tinydtls.c>
@@ -497,7 +498,8 @@ target_sources(
           ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/subscribe.h
           ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/uri.h
           ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/uthash.h
-          ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/utlist.h)
+          ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/utlist.h
+          ${CMAKE_CURRENT_LIST_DIR}/include/coap${LIBCOAP_API_VERSION}/custom_scanner.h)
 target_include_directories(
   ${COAP_LIBRARY_NAME}
   PUBLIC # config headers are generated during configuration time
@@ -585,7 +587,6 @@ if(ENABLE_EXAMPLES)
   add_executable(coap-client ${CMAKE_CURRENT_LIST_DIR}/examples/coap-client.c)
   target_link_libraries(coap-client
                         PUBLIC ${PROJECT_NAME}::${COAP_LIBRARY_NAME})
-
   add_executable(coap-rd ${CMAKE_CURRENT_LIST_DIR}/examples/coap-rd.c)
   target_include_directories(coap-rd
     PRIVATE
