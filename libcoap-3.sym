@@ -228,3 +228,5 @@ coap_ticks_to_rt
 coap_ticks_to_rt_us
 coap_tls_is_supported
 coap_write_block_opt
+custom_client_scanner_fn
+custom_client_fn

@@ -104,6 +104,7 @@ libcoap_@LIBCOAP_NAME_SUFFIX@_la_SOURCES = \
   src/coap_asn1.c \
   src/coap_cache.c \
   src/coap_debug.c \
+  src/custom_scanner.c \
   src/coap_event.c \
   src/coap_hashkey.c \
   src/coap_gnutls.c \
@@ -144,6 +145,7 @@ libcoap_include_HEADERS = \
   $(top_builddir)/include/coap$(LIBCOAP_API_VERSION)/coap.h \
   $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/coap_cache.h \
   $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/coap_debug.h \
+  $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/custom_scanner.h \
   $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/coap_dtls.h \
   $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/coap_event.h \
   $(top_srcdir)/include/coap$(LIBCOAP_API_VERSION)/coap_forward_decls.h \

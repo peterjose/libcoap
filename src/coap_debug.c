@@ -48,8 +48,9 @@
 #endif
 
 static coap_log_t maxlog = LOG_WARNING;        /* default maximum log level */
+FILE *log_file_ptr = NULL;
 
-static int use_fprintf_for_show_pdu = 1; /* non zero to output with fprintf */
+static int use_fprintf_for_show_pdu = 0; /* non zero to output with fprintf */
 
 const char *coap_package_name(void) {
   return PACKAGE_NAME;
@@ -936,7 +937,10 @@ coap_log_impl(coap_log_t level, const char *format, ...) {
     FILE *log_fd;
     size_t len;
 
-    log_fd = level <= LOG_CRIT ? COAP_ERR_FD : COAP_DEBUG_FD;
+    if(log_file_ptr == NULL)
+      log_fd = level <= LOG_CRIT ? COAP_ERR_FD : COAP_DEBUG_FD;
+    else
+      log_fd = log_file_ptr;
 
     coap_ticks(&now);
     len = print_timestamp(timebuf,sizeof(timebuf), now);
@@ -1022,4 +1026,10 @@ int coap_debug_send_packet(void) {
     }
   }
   return 1;
+}
+
+
+void coap_debug_output_log_file(void *ptr)
+{
+  log_file_ptr = (FILE *)ptr;
 }

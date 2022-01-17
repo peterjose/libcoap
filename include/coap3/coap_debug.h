@@ -249,5 +249,7 @@ int coap_debug_set_packet_loss(const char *loss_level);
  */
 int coap_debug_send_packet(void);
 
+void coap_debug_output_log_file(void *ptr);
+
 
 #endif /* COAP_DEBUG_H_ */
